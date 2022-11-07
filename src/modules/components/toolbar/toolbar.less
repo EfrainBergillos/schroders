@@ -1,0 +1,70 @@
+@import "@modules/palette.less";
+
+@min-search-width: 100px;
+
+.sch-toolbar {
+  display: flex;
+
+  &__search {
+    &__input {
+      width: @min-search-width;
+      padding: 5px;
+    }
+  }
+
+  &__search-results {
+    .sch-generic-list();
+    min-width: @min-search-width;
+
+    &__item {
+      .sch-generic-list__item();
+    }
+
+    &__ticker {
+      width: 80px;
+      display: inline-block;
+    }
+    &__description {
+      display: inline-block;
+    }
+  }
+
+  &__selected-tickers {
+    margin: 0 0 0 20px;
+    list-style: none;
+    padding: 0;
+
+    &__item {
+      border: 1px solid @border-color;
+      padding: 3px;
+      display: inline-block;
+      margin-right: 10px;
+      user-select: none;
+
+      button {
+        background-color: @bg-color;
+        margin-left: 5px;
+
+        &:hover {
+          background-color: @hover-bg-color;
+          color: @hover-text-color;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  &__price-type {
+    appearance: none;
+    border-radius: 0 !important;
+    background-color: @bg-color;
+    color: black;
+
+    &[data-open],
+    &[data-open] datalist {
+      background-color: @bg-color;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+}
