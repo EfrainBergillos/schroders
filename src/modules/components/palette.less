@@ -14,8 +14,23 @@
   border: 1px solid @border-color;
 }
 
+.sch-toolbar-border() {
+  border: 1px solid @border-color;
+}
+
 .sch-generic-list__item() {
-  padding: 2px;
+  padding: 2px 4px;
+
+  &:hover {
+    background-color: @hover-bg-color;
+    color: @hover-text-color;
+    cursor: pointer;
+  }
+}
+
+.sch-generic-button() {
+  background-color: @bg-color;
+  margin-left: 5px;
 
   &:hover {
     background-color: @hover-bg-color;

@@ -1,4 +1,5 @@
 {
+  "rootDir": "./src",
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
@@ -8,9 +9,9 @@
     "jsx": "react",
     "moduleResolution": "node",
     "noEmit": false,
+    "sourceMap": true,
     "paths": {
       "@modules/*": ["./src/modules/*"]
     }
-  },
-  "files": ["src/index.jsx"]
+  }
 }

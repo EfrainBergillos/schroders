@@ -1,0 +1,27 @@
+@import '@modules/components/palette.less';
+
+@min-search-width: 100px;
+
+.sch-ticker-search {
+  &__input {
+    width: @min-search-width;
+    padding: 5px;
+  }
+
+  &__results {
+    .sch-generic-list();
+    min-width: @min-search-width;
+
+    &__item {
+      .sch-generic-list__item();
+    }
+
+    &__ticker {
+      width: 80px;
+      display: inline-block;
+    }
+    &__description {
+      display: inline-block;
+    }
+  }
+}

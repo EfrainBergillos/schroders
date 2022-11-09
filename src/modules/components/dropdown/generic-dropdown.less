@@ -1,13 +1,30 @@
-@import "@modules/palette.less";
+@import '@modules/components/palette.less';
 
 .sch-generic-dropdown {
+  position: relative;
+
   &__selection {
+    .sch-toolbar-border();
+    display: flex;
+    justify-content: space-between;
+    padding: 1px;
+
+    label {
+      padding: 5px 3px 0 3px;
+      cursor: pointer;
+    }
+
+    button {
+      .sch-generic-button();
+      height: 25px;
+    }
   }
 
   &__list {
     .sch-generic-list();
+    width: 100%;
 
-    &__ item {
+    &__item {
       .sch-generic-list__item();
     }
   }

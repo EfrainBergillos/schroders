@@ -1,12 +1,13 @@
-import React, { useRef, useState } from "react";
-import { useClickOutside } from "@modules/utils";
+import React, { useRef, useState } from 'react';
+import { useClickOutside } from '@modules/utils';
+import './generic-dropdown.less';
 
 type GenericDropDownData = Map<any, string>;
 
 type GenericDropdownProps = {
-  selected: string;
+  selected: any;
   dataList: GenericDropDownData;
-  onSelection: (value: string) => any;
+  onSelection: (value: any) => any;
 };
 
 export const GenericDropdown = ({
@@ -19,8 +20,7 @@ export const GenericDropdown = ({
 
   useClickOutside(dropDownRef, () => setIsOpen(false));
 
-  // @ts-ignore
-  const keys = [...dataList.keys()];
+  const keys = Array.from(dataList.keys());
   const defaultSelection = selected || keys[0];
   const [currentSelection, setCurrentSelection] =
     useState<string>(defaultSelection);
@@ -33,18 +33,22 @@ export const GenericDropdown = ({
 
   return (
     <div className="sch-generic-dropdown" ref={dropDownRef}>
-      <label className="sch-generic-dropdown__selection">
-        {dataList.get(currentSelection)}
-        <button onClick={() => setIsOpen(!isOpen)}>&#8595;</button>
-      </label>
+      <div
+        className="sch-generic-dropdown__selection"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <label>{dataList.get(currentSelection)}</label>
+        <button>{isOpen ? <span>&#8679;</span> : <span>&#8681;</span>}</button>
+      </div>
       {isOpen && (
         <ul className="sch-generic-dropdown__list">
           {keys.map((key) => (
             <li
+              key={key}
               className="sch-generic-dropdown__list__item"
               onClick={() => handleSelection(key)}
             >
-              dataList.get(key)
+              {dataList.get(key)}
             </li>
           ))}
         </ul>

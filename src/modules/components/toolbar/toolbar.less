@@ -1,32 +1,14 @@
-@import "@modules/palette.less";
-
-@min-search-width: 100px;
+@import '@modules/components/palette.less';
 
 .sch-toolbar {
   display: flex;
 
-  &__search {
-    &__input {
-      width: @min-search-width;
-      padding: 5px;
-    }
+  > * {
+    margin-left: 20px;
   }
 
-  &__search-results {
-    .sch-generic-list();
-    min-width: @min-search-width;
-
-    &__item {
-      .sch-generic-list__item();
-    }
-
-    &__ticker {
-      width: 80px;
-      display: inline-block;
-    }
-    &__description {
-      display: inline-block;
-    }
+  .sch-generic-dropdown__selection {
+    width: 125px;
   }
 
   &__selected-tickers {
@@ -35,21 +17,18 @@
     padding: 0;
 
     &__item {
-      border: 1px solid @border-color;
+      .sch-toolbar-border();
       padding: 3px;
       display: inline-block;
-      margin-right: 10px;
+      margin-right: 5px;
       user-select: none;
 
-      button {
-        background-color: @bg-color;
-        margin-left: 5px;
+      &:last-child {
+        margin-right: 0;
+      }
 
-        &:hover {
-          background-color: @hover-bg-color;
-          color: @hover-text-color;
-          cursor: pointer;
-        }
+      button {
+        .sch-generic-button();
       }
     }
   }
