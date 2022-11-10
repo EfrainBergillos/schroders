@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './schroders-app.less';
-import { Toolbar, Chart } from '@modules/components';
-import { TCharSeries, Ticker } from '@modules/domain';
+import { Toolbar, ChartWrapper } from '@modules/components';
+import { THLOCSeries, Ticker } from '@modules/domain';
 import { getCandlesAsync, getUsSymbolsListAsync } from '@modules/services';
-import { SchStore, usTickersLoaded } from '@modules/store';
+import { candleDataLoaded, SchStore, usTickersLoaded } from '@modules/store';
 
 export const SchrodersApp = () => {
   const { dispatch, state } = useContext(SchStore);
-  const { toolbar } = state;
-  const { dateFrom, dateTo, priceType, selectedTickers } = toolbar;
+  const { toolbar, candles } = state;
+  const { dateFrom, dateTo, selectedTickers, priceType } = toolbar;
 
   // These effect could be extracted in to hooks
   useEffect(() => {
@@ -17,21 +17,26 @@ export const SchrodersApp = () => {
     });
   }, []);
 
-  // useEffect(() => {
-  //   selectedTickers.forEach(() => {
-  //
-  //   });
-  //   getCandlesAsync({
-  //
-  //   }).then((timeSeries: TCharSeries) => {
-  //     dispatch()
-  //   });
-  // }, [dateFrom, dateTo]);
+  useEffect(() => {
+    selectedTickers.forEach((ticker) => {
+      getCandlesAsync({ ticker, dateFrom, dateTo }).then(
+        (candles: THLOCSeries) => {
+          dispatch(candleDataLoaded({ symbol: ticker.symbol, candles }));
+        }
+      );
+    });
+  }, [dateFrom, dateTo, selectedTickers]);
 
   return (
     <div className="sch-app">
       <Toolbar toolbarState={state.toolbar} />
-      <Chart priceType={priceType} />
+      <ChartWrapper
+        hlocData={candles}
+        priceType={priceType}
+        dateTo={dateTo}
+        dateFrom={dateFrom}
+        selectedTickers={selectedTickers}
+      />
     </div>
   );
 };

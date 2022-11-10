@@ -1,8 +1,8 @@
 export enum PriceType {
-  OPEN_PRICES,
-  HIGH_PRICES,
-  LOW_PRICES,
-  CLOSE_PRICES,
+  HIGH_PRICES = 'h',
+  LOW_PRICES = 'l',
+  OPEN_PRICES = 'o',
+  CLOSE_PRICES = 'c',
 }
 
 export type Ticker = {
@@ -23,11 +23,14 @@ export type TDateFromTo = {
   dateTo?: Date;
 };
 
-export type TCharSeries = {
+export type THLOCSeries = {
   h: Array<number>;
   l: Array<number>;
   o: Array<number>;
   c: Array<number>;
   t: Array<number>;
   v: Array<number>;
+  s: string;
 };
+
+export type SymbolToTHLOCMap = { [symbol: string]: THLOCSeries };

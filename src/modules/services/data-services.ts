@@ -1,6 +1,6 @@
 // @ts-ignore
 import { ApiClient, DefaultApi } from 'finnhub';
-import { PriceType, TCharSeries, Ticker } from '@modules/domain';
+import { THLOCSeries, Ticker } from '@modules/domain';
 
 ApiClient.instance.authentications['api_key'].apiKey =
   'cdjt6n2ad3i33584nqngcdjt6n2ad3i33584nqo0';
@@ -30,26 +30,24 @@ export const getUsSymbolsListAsync = (): Promise<Array<Ticker>> => {
 
 type TGetCandlesCallProps = {
   ticker: Ticker;
-  priceType: PriceType;
-  resolution: string;
+  resolution?: string;
   dateFrom: Date;
   dateTo: Date;
 };
 
 export const getCandlesAsync = ({
   ticker,
-  priceType,
-  resolution = '5',
+  resolution = 'D',
   dateFrom,
   dateTo,
-}: TGetCandlesCallProps): Promise<Array<TCharSeries>> => {
+}: TGetCandlesCallProps): Promise<THLOCSeries> => {
   return new Promise((resolve, reject) => {
-    finnHubClient.stock_candles(
+    finnHubClient.stockCandles(
       ticker.symbol,
       resolution,
-      dateFrom.getTime(),
-      dateTo.getTime(),
-      (error: any, data: Array<any>, response: any) => {
+      Math.round(dateFrom.getTime() / 1000),
+      Math.round(dateTo.getTime() / 1000),
+      (error: any, data: THLOCSeries, response: any) => {
         if (!error) {
           resolve(data);
         }

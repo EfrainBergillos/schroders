@@ -1,10 +1,8 @@
-// import * as candlesActions from './candles-actions';
-// import * as appActions from './app-actions';
+import * as candlesActions from './candles-actions';
 import * as toolbarActions from './toolbar-actions';
 
 export const rootActions = {
-  // candles: candlesActions,
-  // app: appActions,
+  candles: candlesActions,
   toolbar: toolbarActions,
 };
 

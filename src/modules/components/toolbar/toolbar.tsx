@@ -47,7 +47,7 @@ export const Toolbar = ({ toolbarState }: TToolbarProps): JSX.Element => {
             return (
               <li
                 key={ticker.symbol}
-                className="sch-toolbar__selected-tickers__item"
+                className={`sch-toolbar__selected-tickers__item sch-toolbar__selected-tickers__item__${index}`}
                 title={ticker.description || ''}
               >
                 {ticker.displaySymbol}

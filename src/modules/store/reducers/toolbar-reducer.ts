@@ -1,6 +1,7 @@
 import { TRootActions } from '../actions/root-actions';
 import { AllActions } from '../actions/all-action-types';
 import { PriceType, Ticker } from '@modules/domain';
+import moment from 'moment';
 
 export interface IToolbarState {
   usTickers: Array<Ticker>;
@@ -13,7 +14,7 @@ export interface IToolbarState {
 export const toolbarInitState: IToolbarState = {
   usTickers: [],
   priceType: PriceType.CLOSE_PRICES,
-  dateFrom: new Date(),
+  dateFrom: moment().subtract(1, 'months').toDate(),
   dateTo: new Date(),
   selectedTickers: [],
 };
@@ -46,7 +47,7 @@ export const toolbarReducer = (
 
     case AllActions.REMOVE_SELECTED_TICKER: {
       const results = state.selectedTickers.filter(
-        (ticker) => ticker.symbol === action.payload.symbol
+        (ticker) => ticker.symbol !== action.payload.symbol
       );
 
       return {

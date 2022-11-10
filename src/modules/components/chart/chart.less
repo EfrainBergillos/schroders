@@ -1,0 +1,24 @@
+@import '@modules/components/palette.less';
+
+@margin-top: 10px;
+
+.sch-chart {
+  .sch-toolbar-border();
+  width: 100%;
+  height: calc(100% - @margin-top - 29px);
+  margin-top: @margin-top;
+
+  &__svg {
+    &__line-0 {
+      stroke: @chart-color-0;
+    }
+
+    &__line-1 {
+      stroke: @chart-color-1;
+    }
+
+    &__line-2 {
+      stroke: lightcoral;
+    }
+  }
+}

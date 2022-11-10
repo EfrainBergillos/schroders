@@ -1,11 +1,11 @@
 import { Reducer } from 'react';
 import { TRootActions } from '../actions/root-actions';
 import { toolbarReducer, toolbarInitState } from './toolbar-reducer';
+import { candlesReducer, candlesInitState } from './candles-reducer';
 
 export const rootState = {
-  // app: appInitState,
   toolbar: toolbarInitState,
-  // candles: candlesInitState
+  candles: candlesInitState,
 };
 
 export type TRootState = typeof rootState;
@@ -26,7 +26,6 @@ const combineReducers = <S = TRootState>(reducers: {
 };
 
 export const rootReducer = combineReducers({
-  // app: appReducer,
   toolbar: toolbarReducer,
-  // candles: candlesReducer,
+  candles: candlesReducer,
 });

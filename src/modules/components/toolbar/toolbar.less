@@ -7,6 +7,10 @@
     margin-left: 20px;
   }
 
+  > :first-child {
+    margin-left: 0;
+  }
+
   .sch-generic-dropdown__selection {
     width: 125px;
   }
@@ -22,6 +26,18 @@
       display: inline-block;
       margin-right: 5px;
       user-select: none;
+
+      &__0 {
+        background-color: @chart-color-0;
+      }
+
+      &__1 {
+        background-color: @chart-color-1;
+      }
+
+      &__2 {
+        background-color: @chart-color-2;
+      }
 
       &:last-child {
         margin-right: 0;
